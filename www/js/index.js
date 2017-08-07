@@ -47,3 +47,96 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+
+
+var bacon = {};
+bacon.timer = null;
+bacon.beacons = {};
+bacon.appContainer = document.querySelector('.app');
+
+
+// bacon.ready = function(address) {
+//     setTimeout(bacon.scan, 1000);
+//     bacon.timer = setInterval(bacon.updateList, 1000);
+// }
+
+
+bacon.scan = function() {
+    evothings.eddystone.startScan(function(beacon) {
+        // Update beacon data.
+        beacon.timeStamp = Date.now();
+        bacon.beacons[beacon.address] = beacon;
+    },
+    function(error) {
+        bacon.message('scan error: ' + error);
+    });
+}
+
+bacon.mapRSSI = function(rssi) {
+    if (rssi >= 0) return 1; // Unknown RSSI maps to 1.
+    if (rssi < -100) return 100; // Max RSSI
+    return 100 + rssi;
+}
+
+bacon.getSortedList = function(beacons) {
+    var beaconList = [];
+    for (var key in beacons) {
+        beaconList.push(beacons[key]);
+    }
+    beaconList.sort(function(beacon1, beacon2) {
+        return bacon.mapRSSI(beacon1.rssi) < bacon.mapRSSI(beacon2.rssi);
+    });
+    return beaconList;
+}
+
+// bacon.removeOld = function() {
+//     // bacon.message('removing old bacons');
+//     var timeNow = Date.now();
+//     for (var key in bacon.beacons)
+//     {
+//         // Only show beacons updated during the last 60 seconds.
+//         var beacon = bacon.beacons[key];
+//         if (beacon.timeStamp + 1000 < timeNow)
+//         {
+//             delete bacon.beacons[key];
+//         }
+//     }
+// }
+
+bacon.display = function(address) {
+    bacon.appContainer.classList.add('loading');
+    var baconHtml = '';
+    var sortedList = bacon.getSortedList(bacon.beacons);
+    
+    for (var i = 0; i < sortedList.length; i++) {
+        var baconBit = sortedList[i];
+        if (baconBit.name == '' || baconBit.name == null) {
+            baconBit.name = 'NA';
+        }
+        if(baconBit.address == address && baconBit.rssi >= -70) {
+            bacon.message('You found it! The answer was the "The planks picture"');
+            bacon.timer = null;
+            baconHtml += '<br/><a class="btn" id="play" href="clue2.html">NEXT</a>';
+        }
+        
+    }
+    
+    // document.querySelector('h1 span.count').innerText = parseInt(sortedList.length);
+    document.querySelector('#found-beacons').innerHTML = baconHtml;
+    bacon.appContainer.classList.remove('loading');
+}
+
+
+bacon.updateList = function(address) {
+    // bacon.removeOld();
+    bacon.display(address);
+}
+
+// bacon.message = function(text) {
+//     document.querySelector('#message').innerHTML = text;
+// }
+
+
+
+
+
