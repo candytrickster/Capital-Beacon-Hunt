@@ -48,17 +48,19 @@ var app = {
     }
 };
 
+var foundMsg = '';
+var foundNext;
+
+function setFoundVar(msg, next){
+    foundMsg += msg;
+    foundNext = next;
+}
+
 
 var bacon = {};
 bacon.timer = null;
 bacon.beacons = {};
 bacon.appContainer = document.querySelector('.app');
-
-
-// bacon.ready = function(address) {
-//     setTimeout(bacon.scan, 1000);
-//     bacon.timer = setInterval(bacon.updateList, 1000);
-// }
 
 
 bacon.scan = function() {
@@ -89,20 +91,6 @@ bacon.getSortedList = function(beacons) {
     return beaconList;
 }
 
-// bacon.removeOld = function() {
-//     // bacon.message('removing old bacons');
-//     var timeNow = Date.now();
-//     for (var key in bacon.beacons)
-//     {
-//         // Only show beacons updated during the last 60 seconds.
-//         var beacon = bacon.beacons[key];
-//         if (beacon.timeStamp + 1000 < timeNow)
-//         {
-//             delete bacon.beacons[key];
-//         }
-//     }
-// }
-
 bacon.display = function(address) {
     bacon.appContainer.classList.add('loading');
     var baconHtml = '';
@@ -114,9 +102,10 @@ bacon.display = function(address) {
             baconBit.name = 'NA';
         }
         if(baconBit.address == address && baconBit.rssi >= -70) {
-            bacon.message('You found it! The answer was the "The planks picture"');
+
+            bacon.message('You found it! The answer was the "'+foundMsg+'"');
             bacon.timer = null;
-            baconHtml += '<br/><a class="btn" id="play" href="clue2.html">NEXT</a>';
+            baconHtml += foundNext;
         }
         
     }
@@ -132,9 +121,9 @@ bacon.updateList = function(address) {
     bacon.display(address);
 }
 
-// bacon.message = function(text) {
-//     document.querySelector('#message').innerHTML = text;
-// }
+bacon.message = function(text) {
+    document.querySelector('#message').innerHTML = text;
+}
 
 
 

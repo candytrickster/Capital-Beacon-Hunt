@@ -16,17 +16,29 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+@font-face {
+    font-family: Treasure;
+    src: url(../fonts/Treamd.ttf);
+}
+
+
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0);  make transparent link selection, adjust last value opacity 0 to 1.0 
 }
 
+html {
+    background: radial-gradient(#486A96 20%, #264771 80%);
+    height: 100%;
+    background-repeat: no-repeat;
+}
+
 body {
-    font-family: Arial;
+    font-family: Treasure;
+    
 }
 
 /* Portrait layout (default) */
 .app {
-    background-color: #FDFDFE;
     padding: 20px;
 }
 
@@ -79,6 +91,10 @@ img {
 #menu {
     text-align: center;
     margin-top: 40px;
+}
+
+#menu img:hover {
+    cursor: pointer;
 }
 
 #play {

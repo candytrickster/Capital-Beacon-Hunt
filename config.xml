@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="org.utahinteractive.beaconTest" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Treasure Hunt</name>
+    <name>Capital Hunt</name>
     <description>
         This is a scavenger hunt in the Utah capital with beacons for mobile
     </description>

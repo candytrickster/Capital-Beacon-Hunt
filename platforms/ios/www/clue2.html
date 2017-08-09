@@ -18,120 +18,28 @@
         <h1>Clue 2 of 2</h1>
         <h3>You won’t be hungry when this is filled, it keeps your things nice and chilled.</h3>
         <p id="message">Searching for bacon...</p>
-
+        <br/>
         <div id="found-beacons"></div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
-    </script>
-    <script>
 
+        // ADDRESS:
+        // 0C:F3:EE:0D:9F:D4 -3658
+        // OC:F3:EE:0D:9F:CC - NO MODEL NUM
+        // 0C:F3:EE:0D:A4:4C - 47447
 
-// ADDRESS:
-// 0C:F3:EE:0D:9F:D4 -3658
-// OC:F3:EE:0D:9F:CC - NO MODEL NUM
-// 0C:F3:EE:0D:A4:4C - 47447
+        setFoundVar('The fridge','<a class="btn" id="play" href="goal.html">Complete</a>');
 
-    var bacon = {};
-        bacon.timer = null;
-        bacon.beacons = {};
-        bacon.appContainer = document.querySelector('.app');
+        // <a class="btn" id="play" href="clue2.html">NEXT</a>
 
-    bacon.ready = function() {
-        setTimeout(bacon.scan, 1000);
-        bacon.timer = setInterval(bacon.updateList, 1000);
-    }
+        document.addEventListener('deviceready', function() {
+            setTimeout(bacon.scan, 1000);
+            bacon.timer = setInterval(function(){bacon.updateList('0C:F3:EE:0D:A4:4C')}, 1000);
+        }, false);
 
-    bacon.scan = function() {
-        evothings.eddystone.startScan(function(beacon) {
-            // Update beacon data.
-            beacon.timeStamp = Date.now();
-            bacon.beacons[beacon.address] = beacon;
-        },
-        function(error) {
-            bacon.message('scan error: ' + error);
-        });
-    }
-
-    bacon.mapRSSI = function(rssi) {
-        if (rssi >= 0) return 1; // Unknown RSSI maps to 1.
-        if (rssi < -100) return 100; // Max RSSI
-        return 100 + rssi;
-    }
-
-    bacon.getSortedList = function(beacons) {
-        var beaconList = [];
-        for (var key in beacons) {
-            beaconList.push(beacons[key]);
-        }
-        beaconList.sort(function(beacon1, beacon2) {
-            return bacon.mapRSSI(beacon1.rssi) < bacon.mapRSSI(beacon2.rssi);
-        });
-        return beaconList;
-    }
-
-    bacon.removeOld = function() {
-        // bacon.message('removing old bacons');
-        var timeNow = Date.now();
-        for (var key in bacon.beacons)
-        {
-            // Only show beacons updated during the last 60 seconds.
-            var beacon = bacon.beacons[key];
-            if (beacon.timeStamp + 1000 < timeNow)
-            {
-                delete bacon.beacons[key];
-            }
-        }
-    }
-
-    bacon.display = function() {
-        bacon.appContainer.classList.add('loading');
-        var baconHtml = '';
-        var sortedList = bacon.getSortedList(bacon.beacons);
-    
-       // {"advertisementData":{"kCBAdvDataIsConnectable":false,"kCBAdvDataServiceData":{"0000feaa-0000-1000-8000-00805f9b34fb":"EM0BdXRhaA0="},"kCBAdvDataServiceUUIDs":["0000feaa-0000-1000-8000-00805f9b34fb"]},"rssi":-71,"name":null,"address":"CFA2C461-B029-4FAC-B0D3-1FA098D4C7E1","__isConnected":false,"txPower":-51,"url":"https://www.utah.gov","timeStamp":1499881437138}
-
-        
-        for (var i = 0; i < sortedList.length; i++) {
-            var baconBit = sortedList[i];
-            if (baconBit.name == '' || baconBit.name == null) {
-                baconBit.name = 'NA';
-            }
-            if(baconBit.address == '0C:F3:EE:0D:A4:4C' && baconBit.rssi >= -70) {
-                // baconHtml += '<div class="beacon">';
-                // baconHtml += '<span>Name: ' + baconBit.name + '</span> <br>';
-                // baconHtml += '<span>Address: ' + baconBit.address + '</span> <br>';
-                // baconHtml += '<span>UUID: ' + baconBit.advertisementData.kCBAdvDataServiceUUIDs[0] + '</span> <br>';
-                // baconHtml += '<span>RSSI: ' + baconBit.rssi + '</span> <br>';
-                // baconHtml += '<span>URL: ' + baconBit.url + '</span> <br>';
-                // baconHtml += '<span>txPower: ' + baconBit.txPower + '</span> <br>';
-                // baconHtml += '<span>Time: ' + baconBit.timeStamp + '</span> <br>.';
-                // baconHtml += '</div>';
-                bacon.message('You found it! The answer was the "Fridge"');
-                bacon.timer = null;
-                baconHtml += '<br/><a class="btn" id="play" href="goal.html">COMPLETE</a>';
-            }
-            
-        }
-        
-        // document.querySelector('h1 span.count').innerText = parseInt(sortedList.length);
-        document.querySelector('#found-beacons').innerHTML = baconHtml;
-        bacon.appContainer.classList.remove('loading');
-    }
-
-
-    bacon.updateList = function() {
-        bacon.removeOld();
-        bacon.display();
-    }
-
-    bacon.message = function(text) {
-        document.querySelector('#message').innerHTML = text;
-    }
-
-    document.addEventListener('deviceready', bacon.ready, false);
 
     </script>
 </body>

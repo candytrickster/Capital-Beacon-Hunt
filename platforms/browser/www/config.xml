@@ -6,9 +6,9 @@
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
-    <name>Treasure Hunt</name>
+    <name>Capital Hunt</name>
     <description>
-        This is a scavenger hunt with beacons for mobile
+        This is a scavenger hunt in the Utah capital with beacons for mobile
     </description>
     <author email="tracie.wamsley@utahinteractive.org" href="http://www.utahinteractive.org">
         Tracie
