@@ -28,35 +28,19 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>Capitol Treasure hunt</title>
     </head>
-    <body>
-        <header>
-            <h1>Capitol Treasure Hunt</h1>
-        </header>
+    <body onload="init();">
         <div class="app">
-            <img src="./img/capitol-white.png">
-            <h2>Can you find the Capitol's treasure?</h2>
-            <!-- <ol>
-                <li>Press Start</li>
-                <li>Solve the clues to lead you to the treasure</li>
-                <li>Have fun!</li>
-            </ol> -->
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <!-- <p>Main Menu</p> -->
-            <div id="menu">
-                <a href="./play.html"><img src="./img/playbtn.png"></a>
-            </div>
+            <canvas id="demoCanvas" width="500" height="300"></canvas>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>
