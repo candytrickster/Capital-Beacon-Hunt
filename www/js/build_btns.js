@@ -1,11 +1,11 @@
 function buildPlayBtn() {
     var playbtnSheet = new createjs.SpriteSheet({
         images: [queue.getResult("playbtnSheet")],
-        frames: [[0,0,137,75],[147,0,137,77],[294,0,137,79],[0,89,137,81],
-        [147,89,137,79],[294,89,137,77],[0,180,137,75],[147,180,137,76],
-        [294,180,137,79],[0,269,137,81],[147,269,137,79],[294,269,137,76]],
+        frames: [[0,0,201,109],[211,0,201,111],[0,121,201,113],[211,121,200,116],
+        [0,247,201,113],[211,247,201,111],[0,370,201,109],[211,370,201,111],
+        [0,491,200,113],[210,491,200,115],[0,616,200,113],[210,616,201,111]],
         animations: {
-            static: [0, 11, "static",.5]
+            static: [0, 11, "static",.2]
             }     
         });
     
@@ -14,8 +14,8 @@ function buildPlayBtn() {
 }
 
 function setBtnPlacement() {
-    playbtn.x = 120;
-    playbtn.y = cheight-100;
+    playbtn.x = (cwidth/2)-(playbtn.getBounds().width/2);
+    playbtn.y = cheight-116;
 }
 
 
@@ -23,7 +23,3 @@ function addBtns()
 {
     stage.addChild(playbtn);
 }
-
-
-
-
