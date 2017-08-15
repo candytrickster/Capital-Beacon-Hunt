@@ -1,0 +1,59 @@
+﻿{"frames": {
+
+"bigbee instance 10000":
+{
+	"frame": {"x":0,"y":0,"w":68,"h":78},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":72,"h":78},
+	"sourceSize": {"w":72,"h":78}
+},
+"bigbee instance 10001":
+{
+	"frame": {"x":78,"y":0,"w":69,"h":77},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":72,"h":78},
+	"sourceSize": {"w":72,"h":78}
+},
+"bigbee instance 10002":
+{
+	"frame": {"x":157,"y":0,"w":71,"h":75},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":72,"h":78},
+	"sourceSize": {"w":72,"h":78}
+},
+"bigbee instance 10003":
+{
+	"frame": {"x":0,"y":88,"w":72,"h":73},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":1,"w":72,"h":78},
+	"sourceSize": {"w":72,"h":78}
+},
+"bigbee instance 10004":
+{
+	"frame": {"x":157,"y":0,"w":71,"h":75},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":72,"h":78},
+	"sourceSize": {"w":72,"h":78}
+},
+"bigbee instance 10005":
+{
+	"frame": {"x":82,"y":88,"w":69,"h":77},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":72,"h":78},
+	"sourceSize": {"w":72,"h":78}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "15.2.1.95",
+	"image": "big-bee.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":256},
+	"scale": "1"
+}
+}
