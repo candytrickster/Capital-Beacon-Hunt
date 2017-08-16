@@ -72,6 +72,13 @@ header p {
     padding-bottom: 20px
 }
 
+#tagline {
+    font-size: 36px;
+    color: #FFDF00;
+    text-align: center;
+    margin-top: 87px;
+}
+
 
 
 
@@ -134,7 +141,7 @@ img {
 
 canvas {
     margin-left: -28px;
-    margin-top: -28px;
+    margin-top: -269px;
 }
 
 

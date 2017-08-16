@@ -40,13 +40,13 @@ function buildBigBee() {
 
 function setSpritePlacement() {
     bee.x= -50;
-    bee.y= 200;
+    bee.y= cheight/2-bee.getBounds().height;
 
     bbee.x= cwidth+50;
-    bbee.y= 275;
+    bbee.y= cheight/3+(bbee.getBounds().height*1.5);
 
     sbee.x= -100;
-    sbee.y= 420;
+    sbee.y= cheight - cheight/3;
 }
 
 

@@ -7,6 +7,7 @@ manifest = [
     {src:"img/playbtn.png", id:"playbtnSheet"},
     {src:"js/build_sprites.js"},
     {src:"js/build_btns.js"},
+    {src:"js/build_game.js"},
     {src:"js/animations.js"},
     {src:"js/beacon.js"},
     {src:"js/items.js"}
@@ -61,6 +62,8 @@ function setupCanvas() {
     var canvas = document.getElementById("game");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    canvas.style.width=window.innerWidth;//actual width of canvas
+    canvas.style.height=window.innerHeight;
     cwidth = canvas.width;
     cheight = canvas.height;
     stage = new createjs.Stage(canvas);

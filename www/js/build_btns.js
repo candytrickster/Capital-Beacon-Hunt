@@ -9,7 +9,8 @@ function buildPlayBtn() {
             }     
         });
     
-    playbtn = new createjs.Sprite(playbtnSheet);  
+    playbtn = new createjs.Sprite(playbtnSheet);
+    playbtn.on("click", setupPlay);  
     playbtn.gotoAndPlay("static");
 }
 
