@@ -4,10 +4,10 @@ function setupPlay() {
 	header.className += "gameStart";
 
 	var tagline = document.getElementById("tagline");
-	$("#tagline").fadeOut(function() {
-	  $(this).text("Found 0 of 10").fadeIn();
-	});
 	tagline.className += "tagline-play";
+
+	var foundX = document.getElementById("foundX");
+	foundX.className += "foundX";
 
 	var canvas = document.getElementById("game");
 	canvas.className += "canvas-play";

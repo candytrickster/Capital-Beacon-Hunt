@@ -92,6 +92,8 @@ header p {
 .tagline-play{
     color: #fff !important;
     margin-top: 35px !important;
+    text-indent: -9999px;
+    line-height: 0;
 }
 
 .gameStart p{
@@ -100,13 +102,34 @@ header p {
     margin-top: -9px;
 }
 
+#foundX {
+    font-size: 36px;
+    color: #333;
+    margin-top: 35px;
+    text-indent: -9999px;
+    line-height: 0;
+    -webkit-transition: all 2s ease;  
+    -moz-transition: all 2s ease;  
+    -o-transition: all 2s ease;  
+    -ms-transition: all 2s ease;  
+    transition: all 2s ease;
+}
+
+.foundX {
+    color: #fff !important;
+    text-indent: 0 !important;
+    text-align: center;
+    display: block;
+    line-height: initial;
+}
+
 canvas {
     margin-left: -28px;
-    margin-top: -269px;
+    margin-top: -305px;
 }
 
 .canvas-play {
-    margin-top: -158px;
+    margin-top: -135px;
 }
 
 
