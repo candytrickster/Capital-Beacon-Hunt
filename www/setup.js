@@ -1,4 +1,5 @@
 var stage;
+var beacons = {};
 
 manifest = [
     {src:"img/bee-sprite.png", id:"beeSprite"},
@@ -6,11 +7,11 @@ manifest = [
     {src:"img/big-bee.png", id:"bigBeeSprite"},
     {src:"img/playbtn.png", id:"playbtnSheet"},
     {src:"js/build_sprites.js"},
+    {src:"js/items.js"},
     {src:"js/build_btns.js"},
     {src:"js/build_game.js"},
     {src:"js/animations.js"},
-    {src:"js/beacon.js"},
-    {src:"js/items.js"}
+    {src:"js/beacon.js"}
 ];
 
 var sprites, bee, sbee, bbee;
