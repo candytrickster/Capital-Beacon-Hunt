@@ -1,5 +1,6 @@
 var stage;
 var beacons = {};
+var hexagons = {};
 
 manifest = [
     {src:"img/bee-sprite.png", id:"beeSprite"},
@@ -7,6 +8,7 @@ manifest = [
     {src:"img/big-bee.png", id:"bigBeeSprite"},
     {src:"img/playbtn.png", id:"playbtnSheet"},
     {src:"js/build_sprites.js"},
+    {src:"js/build_grid.js"},
     {src:"js/items.js"},
     {src:"js/build_btns.js"},
     {src:"js/build_game.js"},
@@ -18,7 +20,7 @@ var sprites, bee, sbee, bbee;
 
 var cwidth, cheight;
 
-var buttons, playbtn;
+var playbtn;
 
 var game_state;
 
@@ -61,13 +63,11 @@ function loadFiles() {
 
 function setupCanvas() {
     var canvas = document.getElementById("game");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    canvas.style.width=window.innerWidth;//actual width of canvas
-    canvas.style.height=window.innerHeight;
-    cwidth = canvas.width;
-    cheight = canvas.height;
+    cwidth = window.innerWidth;
+    cheight = window.innerHeight;
     stage = new createjs.Stage(canvas);
+    stage.canvas.width = window.innerWidth;
+    stage.canvas.height = window.innerHeight;
 }
 
 function main() {

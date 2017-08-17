@@ -7,7 +7,7 @@ function Item(name, address, found, points, clickable, clue, hint) {
 	this.clue = clue;
 	this.hint = hint;
 
-	this.done = function() = {
+	this.done = function() {
 		this.clickable = !this.clickable;
 		this.found = !this.found;
 	}
