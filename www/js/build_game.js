@@ -32,42 +32,35 @@ function setupItems() {
 }
 
 function setupHexagons() {
-	for(item in beacons) {
+	for(i in beacons) {
 		var x;
 
-		if(item == 0 || item%2 == 0){
+		if(i == 0 || i % 2 == 0){
 			x = (cwidth/2)-(cwidth/4);
 		} else {
 			x = (cwidth/2)+(cwidth/4);
 		}
+		hexagons[i] = new Hexagon(x,i);
 
-		hexagons[item] = new Hexagon(x,item);
+		var textY = hexagons[i].yPlace - (hexagons[i].xPlace*1.5);
+
+		hexTexts[i] = new Text(x,textY,beacons[i].name);
 	}
-
-	// for(var i = 0; i < 9; i++){
-	// 	var x;
-
-	// 	if(i == 0 || i%2 == 0){
-	// 		x = (cwidth/2)-(cwidth/4);
-	// 	} else {
-	// 		x = (cwidth/2)+(cwidth/4);
-	// 	}
-	// 	hexagons[i] = new Hexagon(x,i);
-	// }
-
-
-	// hexagons[0] = new Hexagon(100,0);
-
-	for(hex in hexagons){
-		stage.addChild(hexagons[hex]);
-	}
-	stage.update();
+	showGrid();
 }
 
 function showGrid(){
 
+	var div = document.getElementById("app");
+	for(i in hexagons){
+		stage.addChild(hexagons[i]);
+		// stage.addChild(hexTexts[i]);
+		div.appendChild(hexTexts[i]);
+	}
+	stage.update();
+
 }
 
-function showSingle() {
-
+function showSingle(index) {
+	console.log("index! : "+index);
 }

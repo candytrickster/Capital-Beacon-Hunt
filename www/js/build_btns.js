@@ -11,6 +11,7 @@ function buildPlayBtn() {
     
     playbtn = new createjs.Sprite(playbtnSheet);
     playbtn.on("click", setupPlay);  
+    playbtn.snapToPixel = false;
     playbtn.gotoAndPlay("static");
 }
 
