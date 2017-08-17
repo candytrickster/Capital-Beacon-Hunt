@@ -42,7 +42,7 @@ function setupHexagons() {
 		}
 		hexagons[i] = new Hexagon(x,i);
 
-		var textY = hexagons[i].yPlace - (hexagons[i].xPlace*1.5);
+		var textY = hexagons[i].yPlace - (hexagons[i].size*1.5);
 
 		hexTexts[i] = new Text(x,textY,beacons[i].name);
 	}
@@ -62,5 +62,102 @@ function showGrid(){
 }
 
 function showSingle(index) {
-	console.log("index! : "+index);
+	stage.removeAllChildren();
+	stage.addChild(hexagons[index]);
+	createjs.Tween.get(hexagons[index],{loop:false})
+	.to({ x: cwidth+(cwidth/2) }, 1000, createjs.Ease.getPowInOut(4));
+
+	var single = new SingleHex(index);
+	stage.addChild(single);
+	createjs.Tween.get(single,{loop:false})
+	.to({ x: -(cwidth) }, 1000, createjs.Ease.getPowInOut(4));
+
+
+
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

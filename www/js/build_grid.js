@@ -12,7 +12,8 @@ function Hexagon(x, index)
 		y = y+((size*1.8)*(index-1));
 	}
 	hex.yPlace = y;
-	hex.xPlace = size;
+	hex.xPlace = x;
+	hex.size = size;
 
 	hex.graphics.beginFill("#FFDF00").drawPolyStar(x, y, size, 6, 0, 30);
 	hex.addEventListener("click", function(event){
@@ -20,6 +21,25 @@ function Hexagon(x, index)
         }.bind(this));
 	return hex;
 }
+
+function SingleHex(index){
+	console.log("hello");
+	var hex = new createjs.Shape();
+	hex.graphics.beginStroke("#FFC700");
+	hex.graphics.setStrokeStyle(10);
+	var size = (cwidth/2.5);
+	var x = cwidth+(cwidth/2);
+	var y= cheight/2;
+	
+	hex.index = index;
+
+	hex.graphics.beginFill("#FFDF00").drawPolyStar(x, y, size, 6, 0, 30);
+	return hex;
+}
+
+
+
+
 
 function Text(x,y,msg) {
 
