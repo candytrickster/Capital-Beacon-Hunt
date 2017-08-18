@@ -17,22 +17,30 @@
  * under the License.
  */
 
- @font-face {
-    font-family: Note;
-    src: url(../fonts/Noteworthy-Lt.ttf);
+@font-face {
+    font-family: Athelas;
+    src: url(../fonts/Athelas-Regular.ttf);
+}
+
+@font-face {
+    font-family: Opensans;
+    src: url(../fonts/OpenSans-Semibold.ttf);
 }
 
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0);  make transparent link selection, adjust last value opacity 0 to 1.0 
 }
 
-html {
-    background-color: #333333;
+html, body {
+    height: 100%;
 }
 
 body {
-    font-family: Note;
-    font-weight:lighter;
+    background-image: url("../img/bg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
 }
 
 /* Portrait layout (default) */
@@ -55,18 +63,24 @@ body {
 }
 
 header {
-    background: linear-gradient(#FFDF00, #FFC700);
     margin-left: -28px;
-    margin-top: -54px;
+    margin-top: -42px;
     position: fixed;
     width: 100%;
     text-align: center;
 }
 
+header hr {
+    width: 75%;
+    margin-top: -30px;
+    margin-bottom: -30px;
+}
+
 header p {
-    padding-top: 36px;
+    color: #fff;
+    font-size: 32px;
+    /*padding-top: 36px;
     font-size: 36px;
-    color: #333;
     margin-top: auto;
     margin-bottom: auto;
     padding-bottom: 20px;
@@ -74,14 +88,38 @@ header p {
     -moz-transition: all 2s ease;  
     -o-transition: all 2s ease;  
     -ms-transition: all 2s ease;  
-    transition: all 2s ease;
+    transition: all 2s ease;*/
 }
 
-#tagline {
-    font-size: 36px;
-    color: #FFDF00;
-    text-align: center;
-    margin-top: 87px;
+#topP {
+    font-family: Athelas;
+    font-weight: lighter;
+}
+
+#bottomP {
+    font-family: Opensans;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#back {
+    font-size: 24px;
+    display: none;
     -webkit-transition: all 2s ease;  
     -moz-transition: all 2s ease;  
     -o-transition: all 2s ease;  
@@ -89,11 +127,13 @@ header p {
     transition: all 2s ease;
 }
 
-.tagline-play{
-    color: #fff !important;
-    margin-top: 35px !important;
-    text-indent: -9999px;
-    line-height: 0;
+.back-visible {
+    display: block !important;
+}
+
+#end {
+    font-size: 24px;
+    display: none;
 }
 
 .gameStart p{
@@ -125,7 +165,7 @@ header p {
 
 canvas {
     margin-left: -28px;
-    margin-top: -305px;
+    margin-top: -99px;
 }
 
 .canvas-play {

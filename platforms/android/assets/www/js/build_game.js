@@ -1,10 +1,10 @@
+var backbtn = document.getElementById("back");
+var endbtn = document.getElementById("end");
+
 function setupPlay() {
 	
 	var header = document.getElementById("header");
 	header.className += "gameStart";
-
-	var tagline = document.getElementById("tagline");
-	tagline.className += "tagline-play";
 
 	var foundX = document.getElementById("foundX");
 	foundX.className += "foundX";
@@ -34,7 +34,6 @@ function setupItems() {
 function setupHexagons() {
 	for(i in beacons) {
 		var x;
-		var textX;
 
 		if(i == 0 || i % 2 == 0){
 			x = (cwidth/2)-(cwidth/4);
@@ -43,7 +42,7 @@ function setupHexagons() {
 		}
 		hexagons[i] = new Hexagon(x,i);
 
-		var textY = hexagons[i].yPlace - (hexagons[i].xPlace*1.5);
+		var textY = hexagons[i].yPlace - (hexagons[i].size*1.5);
 
 		hexTexts[i] = new Text(x,textY,beacons[i].name);
 	}
@@ -51,15 +50,141 @@ function setupHexagons() {
 }
 
 function showGrid(){
-
+	backbtn.style.display = "none";
+	stage.removeAllChildren();
+	var div = document.getElementById("app");
 	for(i in hexagons){
 		stage.addChild(hexagons[i]);
-		stage.addChild(hexTexts[i]);
+		// stage.addChild(hexTexts[i]);
+		div.appendChild(hexTexts[i]);
 	}
+
+	for(i in hexagons){
+		createjs.Tween.get(hexagons[i], {loop: false})
+		.to({alpha: 1}, 1000);
+	}
+
 	stage.update();
 
 }
 
-function showSingle() {
+function showSingle(index) {
 
+	// stage.removeAllChildren();
+	// stage.addChild(hexagons[index]);
+	// backbtn.className += "back-visible";
+	createjs.Tween.get(hexagons[index],{loop:false})
+	.to({ x: cwidth+(hexagons[i].size) }, 1000, createjs.Ease.getPowInOut(4));
+
+	for(i in hexagons){
+		if(i != index){
+			createjs.Tween.get(hexagons[i], {loop: false})
+			.to({alpha: 0}, 100);
+		}
+	}
+
+
+	var single = new SingleHex(index);
+	stage.addChild(single);
+	createjs.Tween.get(single,{loop:false})
+	.to({ x: -(cwidth) }, 1000, createjs.Ease.getPowInOut(4));
+
+	backbtn.style.display = "block"
+
+	backbtn.onclick = function() {
+		createjs.Tween.get(single,{loop:false})
+		.to({ x: cwidth+(cwidth/2) }, 1000, createjs.Ease.getPowInOut(4));
+
+		createjs.Tween.get(hexagons[index],{loop:false})
+		.to({ x: 0 }, 1000, createjs.Ease.getPowInOut(4));
+
+		setTimeout("showGrid()",1000);
+	}
+
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

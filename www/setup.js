@@ -81,8 +81,8 @@ function loop() {
     bee.x += 5;
     sbee.x += 7;
     bbee.x -= 3;
-    if(bee.x > (cwidth+50)) bee.x = -50;
-    if(sbee.x > (cwidth+50)) sbee.x = -50;
+    if(bee.x > (cwidth+100)) bee.x = -100;
+    if(sbee.x > (cwidth+100)) sbee.x = -100;
     if(bbee.x < -75) bbee.x = cwidth+50;
     if(game_state == state.PLAY)
     {

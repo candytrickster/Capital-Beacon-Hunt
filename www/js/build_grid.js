@@ -23,7 +23,6 @@ function Hexagon(x, index)
 }
 
 function SingleHex(index){
-	console.log("hello");
 	var hex = new createjs.Shape();
 	hex.graphics.beginStroke("#FFC700");
 	hex.graphics.setStrokeStyle(10);

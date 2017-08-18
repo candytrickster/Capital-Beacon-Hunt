@@ -40,15 +40,24 @@ function buildBigBee() {
 
 function setSpritePlacement() {
     bee.x= -50;
-    bee.y= cheight/2-bee.getBounds().height;
+    bee.y= cheight/3.5-bee.getBounds().height;
 
     bbee.x= cwidth+50;
-    bbee.y= cheight/3+(bbee.getBounds().height*1.5);
+    bbee.y= cheight/4.5+(bbee.getBounds().height);
 
-    sbee.x= -100;
-    sbee.y= cheight - cheight/3;
+    sbee.x= -400;
+    sbee.y= cheight - cheight/2.5;
 }
 
+
+// bee.x= -50;
+//     bee.y= cheight/2-bee.getBounds().height;
+
+//     bbee.x= cwidth+50;
+//     bbee.y= cheight/3+(bbee.getBounds().height*1.5);
+
+//     sbee.x= -100;
+//     sbee.y= cheight - cheight/3;
 
 function addSprites()
 {
