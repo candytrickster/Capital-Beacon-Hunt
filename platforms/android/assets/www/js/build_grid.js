@@ -19,7 +19,40 @@ function Hexagon(x, index)
 	hex.addEventListener("click", function(event){
             showSingle(index);
         }.bind(this));
+
 	return hex;
+}
+
+function ShadowImage(index) {
+	var img = new Image();
+	img.src = "img/shadowImages/"+index+".png";
+
+	img.onload = function() {
+		var bitmap = new createjs.Bitmap(img);
+		stage.addChild(bitmap);
+		bitmap.scaleX = bitmap.scaleY = 0.08;
+    	bitmap.y = hexagons[index].yPlace;
+    	bitmap.x = bitmap.image.width * 0.08
+
+    	console.log(bitmap.image.width);
+	}
+
+	// var bitmap = new createjs.Bitmap(img);
+	// stage.addChild(bitmap);
+
+
+    // bitmap.scaleX = bitmap.scaleY = 0.08;
+    // bitmap.x = hexagons[index].xPlace;
+    // bitmap.y = hexagons[index].yPlace-(bitmap.width/2);
+     
+    // console.log(img.width);
+    stage.update();
+
+    // bitmap.onClick = function(event) {
+    //     bitmap.rotation = 35;
+    //     bitmap.alpha = 0.5;
+    //     stage.update(); 
+    // }
 }
 
 function SingleHex(index){
@@ -46,8 +79,10 @@ function Text(x,y,msg) {
 	var node = document.createTextNode(msg);
 	text.appendChild(node);
 
-	text.style.color = "#fff";
-	text.style.fontSize = "26px";
+	
+	text.className += "item-title";
+	// text.style.marginTop = x+"px";
+	// text.style.marginLeft = y+"px";
 	// text.style.marginTop = "-"+x+"px";
 
 

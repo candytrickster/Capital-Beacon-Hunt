@@ -3,6 +3,8 @@ var endbtn = document.getElementById("end");
 
 function setupPlay() {
 	
+	document.body.style.backgroundImage = "url('img/bg-no-capitol.png')";
+
 	var header = document.getElementById("header");
 	header.className += "gameStart";
 
@@ -63,7 +65,7 @@ function showGrid(){
 		createjs.Tween.get(hexagons[i], {loop: false})
 		.to({alpha: 1}, 1000);
 	}
-
+	ShadowImage(0);
 	stage.update();
 
 }

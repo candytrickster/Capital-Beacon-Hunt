@@ -2,6 +2,7 @@ var stage;
 var beacons = {};
 var hexagons = {};
 var hexTexts = {};
+var shadowImages = {};
 
 manifest = [
     {src:"img/bee-sprite.png", id:"beeSprite"},
