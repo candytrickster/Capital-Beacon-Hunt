@@ -27,15 +27,16 @@ function ShadowImage(index) {
 	var img = new Image();
 	img.src = "img/shadowImages/"+index+".png";
 
-	img.onload = function() {
+	// img.onload = function() {
 		var bitmap = new createjs.Bitmap(img);
-		stage.addChild(bitmap);
-		bitmap.scaleX = bitmap.scaleY = 0.08;
-    	bitmap.y = hexagons[index].yPlace;
-    	bitmap.x = bitmap.image.width * 0.08
+		// stage.addChild(bitmap);
+		bitmap.scaleX = bitmap.scaleY = 0.35;
+    	bitmap.y = hexagons[index].yPlace - (hexagons[index].size/2);
+    	bitmap.x = hexagons[index].xPlace - (hexagons[index].size/2);
 
     	console.log(bitmap.image.width);
-	}
+    	return bitmap;
+	// }
 
 	// var bitmap = new createjs.Bitmap(img);
 	// stage.addChild(bitmap);
@@ -46,7 +47,7 @@ function ShadowImage(index) {
     // bitmap.y = hexagons[index].yPlace-(bitmap.width/2);
      
     // console.log(img.width);
-    stage.update();
+    // stage.update();
 
     // bitmap.onClick = function(event) {
     //     bitmap.rotation = 35;

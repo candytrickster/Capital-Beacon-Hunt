@@ -45,7 +45,7 @@ function setupHexagons() {
 		hexagons[i] = new Hexagon(x,i);
 
 		var textY = hexagons[i].yPlace - (hexagons[i].size*1.5);
-
+		shadowImages[i] = new ShadowImage(i);
 		hexTexts[i] = new Text(x,textY,beacons[i].name);
 	}
 	showGrid();
@@ -59,13 +59,14 @@ function showGrid(){
 		stage.addChild(hexagons[i]);
 		// stage.addChild(hexTexts[i]);
 		div.appendChild(hexTexts[i]);
+		stage.addChild(shadowImages[i]);
+		// console.log(shadowImages[i]);
 	}
 
 	for(i in hexagons){
 		createjs.Tween.get(hexagons[i], {loop: false})
 		.to({alpha: 1}, 1000);
 	}
-	ShadowImage(0);
 	stage.update();
 
 }
