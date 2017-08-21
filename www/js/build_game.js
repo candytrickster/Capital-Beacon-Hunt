@@ -1,5 +1,6 @@
 var backbtn = document.getElementById("back");
 var endbtn = document.getElementById("end");
+var container = document.getElementById("container");
 
 function setupPlay() {
 	
@@ -52,7 +53,9 @@ function setupHexagons() {
 }
 
 function showGrid(){
+
 	backbtn.style.display = "none";
+	container.style.display = "none";
 	stage.removeAllChildren();
 	var div = document.getElementById("app");
 	for(i in hexagons){
@@ -99,6 +102,15 @@ function showSingle(index) {
 	.to({ x: -(cwidth) }, 1000, createjs.Ease.getPowInOut(4));
 
 	backbtn.style.display = "block"
+
+	container.style.display = "block";
+
+	document.addEventListener('deviceready', function() {
+        setTimeout(bacon.scan, 1000);
+        bacon.timer = setInterval(function(){bacon.updateList('0C:F3:EE:0D:9F:D4')}, 1000);
+    }, false);
+
+
 
 	backbtn.onclick = function() {
 		createjs.Tween.get(single,{loop:false})

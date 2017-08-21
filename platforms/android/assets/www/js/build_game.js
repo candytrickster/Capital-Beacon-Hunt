@@ -1,5 +1,6 @@
 var backbtn = document.getElementById("back");
 var endbtn = document.getElementById("end");
+var container = document.getElementById("container");
 
 function setupPlay() {
 	
@@ -45,14 +46,16 @@ function setupHexagons() {
 		hexagons[i] = new Hexagon(x,i);
 
 		var textY = hexagons[i].yPlace - (hexagons[i].size*1.5);
-		shadowImages[i] = new ShadowImage(i);
+		ShadowImage(i);
 		hexTexts[i] = new Text(x,textY,beacons[i].name);
 	}
 	showGrid();
 }
 
 function showGrid(){
+
 	backbtn.style.display = "none";
+	container.style.display = "none";
 	stage.removeAllChildren();
 	var div = document.getElementById("app");
 	for(i in hexagons){
@@ -84,7 +87,7 @@ function showSingle(index) {
 	.to({ x: cwidth+(hexagons[i].size) }, 1000, createjs.Ease.getPowInOut(4));
 
 	for(i in hexagons){
-		if(i != index){
+		if(i != index){        
 			createjs.Tween.get(hexagons[i], {loop: false})
 			.to({alpha: 0}, 100);
 			createjs.Tween.get(shadowImages[i], {loop: false})
@@ -99,6 +102,15 @@ function showSingle(index) {
 	.to({ x: -(cwidth) }, 1000, createjs.Ease.getPowInOut(4));
 
 	backbtn.style.display = "block"
+
+	container.style.display = "block";
+
+	document.addEventListener('deviceready', function() {
+        setTimeout(bacon.scan, 1000);
+        bacon.timer = setInterval(function(){bacon.updateList('0C:F3:EE:0D:9F:D4')}, 1000);
+    }, false);
+
+
 
 	backbtn.onclick = function() {
 		createjs.Tween.get(single,{loop:false})

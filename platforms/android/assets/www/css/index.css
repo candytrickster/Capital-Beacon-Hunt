@@ -150,7 +150,13 @@ header p {
     font-size: 26px;
 }
 
+#container {
+    display: none;
+}
 
+.container-visible {
+    display: block !important;
+}
 
 
 

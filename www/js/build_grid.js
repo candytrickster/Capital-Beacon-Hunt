@@ -36,7 +36,7 @@ function ShadowImage(index) {
     	bitmap.xPlace = bitmap.x;
     	shadowImages[index] = bitmap;
 
-    	console.log(bitmap.image.width);
+    	// console.log(bitmap.image.width);
     	// return bitmap;
 	}
 

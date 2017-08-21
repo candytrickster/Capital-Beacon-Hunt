@@ -27,17 +27,18 @@ function ShadowImage(index) {
 	var img = new Image();
 	img.src = "img/shadowImages/"+index+".png";
 
-	// img.onload = function() {
+	img.onload = function() {
 		var bitmap = new createjs.Bitmap(img);
-		// stage.addChild(bitmap);
+		stage.addChild(bitmap);
 		bitmap.scaleX = bitmap.scaleY = 0.35;
-    	bitmap.y = hexagons[index].yPlace - (hexagons[index].size/2);
-    	bitmap.x = hexagons[index].xPlace - (hexagons[index].size/2);
+    	bitmap.y = hexagons[index].yPlace - (bitmap.image.height/6);
+    	bitmap.x = hexagons[index].xPlace - (bitmap.image.width/5.8);
     	bitmap.xPlace = bitmap.x;
+    	shadowImages[index] = bitmap;
 
-    	console.log(bitmap.image.width);
-    	return bitmap;
-	// }
+    	// console.log(bitmap.image.width);
+    	// return bitmap;
+	}
 
 	// var bitmap = new createjs.Bitmap(img);
 	// stage.addChild(bitmap);
