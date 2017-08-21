@@ -33,6 +33,7 @@ function ShadowImage(index) {
 		bitmap.scaleX = bitmap.scaleY = 0.35;
     	bitmap.y = hexagons[index].yPlace - (hexagons[index].size/2);
     	bitmap.x = hexagons[index].xPlace - (hexagons[index].size/2);
+    	bitmap.xPlace = bitmap.x;
 
     	console.log(bitmap.image.width);
     	return bitmap;

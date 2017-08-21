@@ -66,6 +66,8 @@ function showGrid(){
 	for(i in hexagons){
 		createjs.Tween.get(hexagons[i], {loop: false})
 		.to({alpha: 1}, 1000);
+		createjs.Tween.get(shadowImages[i], {loop: false})
+		.to({alpha: 1}, 1000);
 	}
 	stage.update();
 
@@ -78,10 +80,14 @@ function showSingle(index) {
 	// backbtn.className += "back-visible";
 	createjs.Tween.get(hexagons[index],{loop:false})
 	.to({ x: cwidth+(hexagons[i].size) }, 1000, createjs.Ease.getPowInOut(4));
+	createjs.Tween.get(shadowImages[index],{loop:false})
+	.to({ x: cwidth+(hexagons[i].size) }, 1000, createjs.Ease.getPowInOut(4));
 
 	for(i in hexagons){
 		if(i != index){
 			createjs.Tween.get(hexagons[i], {loop: false})
+			.to({alpha: 0}, 100);
+			createjs.Tween.get(shadowImages[i], {loop: false})
 			.to({alpha: 0}, 100);
 		}
 	}
@@ -100,6 +106,8 @@ function showSingle(index) {
 
 		createjs.Tween.get(hexagons[index],{loop:false})
 		.to({ x: 0 }, 1000, createjs.Ease.getPowInOut(4));
+		createjs.Tween.get(shadowImages[index],{loop:false})
+		.to({ x: shadowImages[index].xPlace }, 1000, createjs.Ease.getPowInOut(4));
 
 		setTimeout("showGrid()",1000);
 	}

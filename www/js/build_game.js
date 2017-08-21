@@ -45,7 +45,7 @@ function setupHexagons() {
 		hexagons[i] = new Hexagon(x,i);
 
 		var textY = hexagons[i].yPlace - (hexagons[i].size*1.5);
-		shadowImages[i] = new ShadowImage(i);
+		ShadowImage(i);
 		hexTexts[i] = new Text(x,textY,beacons[i].name);
 	}
 	showGrid();
@@ -84,7 +84,7 @@ function showSingle(index) {
 	.to({ x: cwidth+(hexagons[i].size) }, 1000, createjs.Ease.getPowInOut(4));
 
 	for(i in hexagons){
-		if(i != index){
+		if(i != index){        
 			createjs.Tween.get(hexagons[i], {loop: false})
 			.to({alpha: 0}, 100);
 			createjs.Tween.get(shadowImages[i], {loop: false})
