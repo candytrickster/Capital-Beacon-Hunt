@@ -74,6 +74,11 @@ bacon.scan = function() {
     });
 }
 
+// function stop() {
+//     console.log("STOPPED");
+//     evothings.eddystone.stopScan();
+// }
+
 bacon.mapRSSI = function(rssi) {
     if (rssi >= 0) return 1; // Unknown RSSI maps to 1.
     if (rssi < -100) return 100; // Max RSSI
@@ -91,33 +96,50 @@ bacon.getSortedList = function(beacons) {
     return beaconList;
 }
 
-bacon.display = function(address) {
-    bacon.appContainer.classList.add('loading');
-    var baconHtml = '';
+bacon.removeOld = function() {
+    // bacon.message('removing old bacons');
+    var timeNow = Date.now();
+    for (var key in bacon.beacons)
+    {
+        // Only show beacons updated during the last 60 seconds.
+        var beacon = bacon.beacons[key];
+        if (beacon.timeStamp + 1000 < timeNow)
+        {
+            delete bacon.beacons[key];
+        }
+    }
+}
+
+bacon.display = function(index,address) {
+    // bacon.appContainer.classList.add('loading');
+    // var baconHtml = '';
+    console.log(address);
     var sortedList = bacon.getSortedList(bacon.beacons);
+    bacon.message(address);
     
     for (var i = 0; i < sortedList.length; i++) {
         var baconBit = sortedList[i];
-        if (baconBit.name == '' || baconBit.name == null) {
-            baconBit.name = 'NA';
-        }
         if(baconBit.address == address && baconBit.rssi >= -70) {
 
-            bacon.message('You found it! The answer was the "'+foundMsg+'"');
+            bacon.message('You found it! The answer was the "'+address+'"');
             bacon.timer = null;
-            baconHtml += foundNext;
+            beacons[index].done();
+            evothings.eddystone.stopScan();
+            // baconHtml += foundNext;
+
+            // fillSingleShadow();
         }
         
     }
     
-    // document.querySelector('h1 span.count').innerText = parseInt(sortedList.length);
-    document.querySelector('#found-beacons').innerHTML = baconHtml;
+    // document.querySelector('#found-beacons').innerHTML = baconHtml;
     bacon.appContainer.classList.remove('loading');
 }
 
 
 bacon.updateList = function(address) {
-    // bacon.removeOld();
+    console.log(address);
+    bacon.removeOld();
     bacon.display(address);
 }
 

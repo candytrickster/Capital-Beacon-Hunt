@@ -40,11 +40,11 @@
     <body id="body" onload="init();">
         <div id="app" class="app">
             <header id="header">
-                <p id="back">Back</p>
                 <p id="topP">UTAH CAPITOL</p>
                 <hr>
                 <p id="bottomP">SCAVENGER HUNT</p>
                 <p id="end">End</p>
+                <p id="back">Back</p>
             </header>
             <p id="foundX">Found 0 of 10</p>
             <div id="container">
@@ -53,6 +53,11 @@
                 <div id="found-beacons"></div>
             </div>  
             <canvas id="game" width="338" height="640"></canvas>
+            <div id="areYouSure">
+                <p>Are you sure you want to end? You only have 0 out of 10</p>
+                <p id="yes">Yes</p>
+                <p id="no">No</p>
+            </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="setup.js"></script>

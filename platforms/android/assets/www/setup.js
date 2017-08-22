@@ -3,6 +3,7 @@ var beacons = {};
 var hexagons = {};
 var hexTexts = {};
 var shadowImages = {};
+var singleShadowImage = {};
 
 manifest = [
     {src:"img/bee-sprite.png", id:"beeSprite"},
@@ -70,6 +71,8 @@ function setupCanvas() {
     stage = new createjs.Stage(canvas);
     stage.canvas.width = window.innerWidth;
     stage.canvas.height = window.innerHeight;
+    canvas.style.width = cwidth;
+    canvas.style.height = cheight;
 }
 
 function main() {

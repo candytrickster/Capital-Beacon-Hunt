@@ -29,7 +29,7 @@ function ShadowImage(index) {
 
 	img.onload = function() {
 		var bitmap = new createjs.Bitmap(img);
-		stage.addChild(bitmap);
+		// stage.addChild(bitmap);
 		bitmap.scaleX = bitmap.scaleY = 0.35;
     	bitmap.y = hexagons[index].yPlace - (bitmap.image.height/6);
     	bitmap.x = hexagons[index].xPlace - (bitmap.image.width/5.8);
@@ -57,6 +57,40 @@ function ShadowImage(index) {
     //     stage.update(); 
     // }
 }
+
+// function FilledImage(index){
+// 	var img = new Image();
+// 	img.src = "img/filledShadows/"+index+".png";
+
+// 	img.onload = function() {
+// 		var bitmap = new createjs.Bitmap(img);
+// 		bitmap.scaleX = bitmap.scaleY = 0.35;
+//     	bitmap.y = hexagons[index].yPlace - (bitmap.image.height/6);
+//     	bitmap.x = hexagons[index].xPlace - (bitmap.image.width/5.8);
+//     	bitmap.xPlace = bitmap.x;
+//     	filledImages[index] = bitmap;
+// 	}
+// }
+
+// function changeImage(index){
+// 	var img = new Image();
+// 	img.src = "img/filledShadows/"+index+".png";
+
+// 	img.onload = function() {
+// 		var bitmap = new createjs.Bitmap(img);
+// 		// stage.addChild(bitmap);
+// 		bitmap.scaleX = bitmap.scaleY = 0.35;
+//     	bitmap.y = hexagons[index].yPlace - (bitmap.image.height/6);
+//     	bitmap.x = hexagons[index].xPlace - (bitmap.image.width/5.8);
+//     	bitmap.xPlace = bitmap.x;
+//     	shadowImages[index] = bitmap;
+//     	stage.update();
+
+//     	// console.log(bitmap.image.width);
+//     	// return bitmap;
+// 	}
+// }
+
 
 function SingleHex(index){
 	var hex = new createjs.Shape();
@@ -86,14 +120,14 @@ function Text(x,y,msg) {
 	text.appendChild(node);
 
 	
-	text.className += "item-title";
+	// text.className += "item-title";
 	// text.style.marginTop = x+"px";
 	// text.style.marginLeft = y+"px";
 	// text.style.marginTop = "-"+x+"px";
 
 
-	// var text = new createjs.Text(text, "28px Noteworthy", "#fff");
-	// text.x = x - (text.getBounds().width/2);
+	// var text = new createjs.Text(text, "22px Opensans", "#fff");
+	// text.x = x;
 	// text.y = y;
 	// text.textBaseline = "bottom";
 	// text.textAlgin = "center"

@@ -1,6 +1,11 @@
+var canvas = document.getElementById("game");
 var backbtn = document.getElementById("back");
-var endbtn = document.getElementById("end");
 var container = document.getElementById("container");
+var foundX = document.getElementById("foundX");
+var numFound = 0;
+
+var blurFilter = new createjs.BlurFilter(5, 5, 1);
+
 
 function setupPlay() {
 	
@@ -9,10 +14,8 @@ function setupPlay() {
 	var header = document.getElementById("header");
 	header.className += "gameStart";
 
-	var foundX = document.getElementById("foundX");
 	foundX.className += "foundX";
 
-	var canvas = document.getElementById("game");
 	canvas.className += "canvas-play";
 
 	stage.removeChild(playbtn, bee,bbee,sbee);
@@ -22,7 +25,7 @@ function setupPlay() {
 }
 
 function setupItems() {
-	beacons[0] = new Item("Base Isolator", "0C:F3:EE:0D:9F:D4", false, 0, true, "This item helps our building stay up during earthquakes", "This item is by the wall safe in the visitor center");
+	beacons[0] = new Item("Base Isolator", "0C:F3:EE:0D:9F:D4", true, 0, true, "This item helps our building stay up during earthquakes", "This item is by the wall safe in the visitor center");
 	beacons[1] = new Item("Liberty Bell", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint");
 	beacons[2] = new Item("Olene Walker", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint");
 	beacons[3] = new Item("House of Rep", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint");
@@ -54,33 +57,37 @@ function setupHexagons() {
 
 function showGrid(){
 
+	document.getElementById("message").innerHTML = "Searching ...";
+	stage.removeAllChildren();
 	backbtn.style.display = "none";
 	container.style.display = "none";
-	stage.removeAllChildren();
+
+	foundX.innerHTML = "Found "+numFound+" of 10";
+
 	var div = document.getElementById("app");
 	for(i in hexagons){
+		if(beacons[i].found) {
+			// shadowImages[i].image.src = "img/filledShadows/"+index+".png";
+			// console.log(shadowImages[i]);
+		}
 		stage.addChild(hexagons[i]);
 		// stage.addChild(hexTexts[i]);
-		div.appendChild(hexTexts[i]);
-		stage.addChild(shadowImages[i]);
-		// console.log(shadowImages[i]);
+		// div.appendChild(hexTexts[i]);
+		// stage.addChild(shadowImages[i]);
 	}
 
 	for(i in hexagons){
 		createjs.Tween.get(hexagons[i], {loop: false})
-		.to({alpha: 1}, 1000);
+		.to({alpha: 1}, 100);
 		createjs.Tween.get(shadowImages[i], {loop: false})
-		.to({alpha: 1}, 1000);
+		.to({alpha: 1}, 100);
 	}
-	stage.update();
+
 
 }
 
 function showSingle(index) {
-
-	// stage.removeAllChildren();
-	// stage.addChild(hexagons[index]);
-	// backbtn.className += "back-visible";
+	document.getElementById("message").innerHTML = "Searching ...";
 	createjs.Tween.get(hexagons[index],{loop:false})
 	.to({ x: cwidth+(hexagons[i].size) }, 1000, createjs.Ease.getPowInOut(4));
 	createjs.Tween.get(shadowImages[index],{loop:false})
@@ -95,37 +102,114 @@ function showSingle(index) {
 		}
 	}
 
-
 	var single = new SingleHex(index);
 	stage.addChild(single);
 	createjs.Tween.get(single,{loop:false})
 	.to({ x: -(cwidth) }, 1000, createjs.Ease.getPowInOut(4));
 
-	backbtn.style.display = "block"
+	var img = new Image();
+	img.src = "img/shadowImages/"+index+".png";
+	var bitmap = new createjs.Bitmap(img);
+	stage.addChild(bitmap);
+	bitmap.scaleX = bitmap.scaleY = 0.7;
+	bitmap.y = single.yPlace - (bitmap.image.height/2.85);
+	bitmap.x = single.xPlace;
+	bitmap.xPlace = bitmap.x;
+	stage.addChild(bitmap);
+	stage.update();
+	createjs.Tween.get(bitmap,{loop:false})
+	.to({ x: (cwidth/2)-(bitmap.image.width/2.85) }, 1000, createjs.Ease.getPowInOut(4));
 
+	backbtn.style.display = "block"
+	backbtn.style.marginTop = "-58px";
 	container.style.display = "block";
 
-	document.addEventListener('deviceready', function() {
-        setTimeout(bacon.scan, 1000);
-        bacon.timer = setInterval(function(){bacon.updateList('0C:F3:EE:0D:9F:D4')}, 1000);
-    }, false);
+
+
+	//start scanning
+	setTimeout(bacon.scan, 1000);
+    bacon.timer = setInterval(function(){
+    	bacon.display(index,beacons[index].address);
+    }, 1000);
+
+
+
+
 
 
 
 	backbtn.onclick = function() {
 		createjs.Tween.get(single,{loop:false})
 		.to({ x: cwidth+(cwidth/2) }, 1000, createjs.Ease.getPowInOut(4));
+		createjs.Tween.get(bitmap,{loop:false})
+		.to({ x: cwidth+(cwidth/2) }, 1000, createjs.Ease.getPowInOut(4));
 
 		createjs.Tween.get(hexagons[index],{loop:false})
 		.to({ x: 0 }, 1000, createjs.Ease.getPowInOut(4));
 		createjs.Tween.get(shadowImages[index],{loop:false})
 		.to({ x: shadowImages[index].xPlace }, 1000, createjs.Ease.getPowInOut(4));
+		
+		//stop scanning
+		
+		clearInterval(bacon.timer);
+		// setTimeout(stop,1000);
+
+
+
+
+
 
 		setTimeout("showGrid()",1000);
 	}
 
 	
 }
+
+function fillSingleShadow(){
+
+}
+
+function fillShadow(index){
+
+}
+
+// function showAreYouSure() {
+// 	var areYouSure = document.getElementById("areYouSure");
+// 	var yesbtn = document.getElementById("yes");
+// 	var nobtn = document.getElementById("no");
+
+// 	areYouSure.style.display = "block";
+// 	areYouSure.className += "areYouSure-visible";
+
+// 	nobtn.onclick = function() {
+// 		canvas.style.webkitFilter = "blur(0px)";
+// 		areYouSure.style.display = "none";
+
+// 	}
+
+// 	yesbtn.onclick = function() {
+		
+// 	}
+// }
+
+
+
+
+
+
+
+// function listenForBeacon(index) {
+// 	setTimeout(bacon.scan, 1000);
+//     bacon.timer = setInterval(function(){bacon.updateList('0C:F3:EE:0D:9F:D4')}, 1000);
+// }
+
+
+//TO CHANGE IMG SOURCE!!!!! also stuff to do when beacon found
+//-------------------------
+// shadowImages[index].image.src = "img/filledShadows/"+index+".png";
+// numFound += 1;
+//if numfound == 10 (or make 10 a var called max?) win
+
 
 
 

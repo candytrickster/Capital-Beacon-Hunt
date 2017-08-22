@@ -67,6 +67,9 @@ function SingleHex(index){
 	var y= cheight/2;
 	
 	hex.index = index;
+	hex.xPlace = x;
+	hex.yPlace = y;
+	hex.size = size;
 
 	hex.graphics.beginFill("#FFDF00").drawPolyStar(x, y, size, 6, 0, 30);
 	return hex;
@@ -83,14 +86,14 @@ function Text(x,y,msg) {
 	text.appendChild(node);
 
 	
-	text.className += "item-title";
+	// text.className += "item-title";
 	// text.style.marginTop = x+"px";
 	// text.style.marginLeft = y+"px";
 	// text.style.marginTop = "-"+x+"px";
 
 
-	// var text = new createjs.Text(text, "28px Noteworthy", "#fff");
-	// text.x = x - (text.getBounds().width/2);
+	// var text = new createjs.Text(text, "22px Opensans", "#fff");
+	// text.x = x;
 	// text.y = y;
 	// text.textBaseline = "bottom";
 	// text.textAlgin = "center"
