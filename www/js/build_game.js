@@ -54,6 +54,7 @@ function setupHexagons() {
 
 function showGrid(){
 
+	endbtn.style.display = "block";
 	backbtn.style.display = "none";
 	container.style.display = "none";
 	stage.removeAllChildren();
@@ -83,8 +84,12 @@ function showSingle(index) {
 	// backbtn.className += "back-visible";
 	createjs.Tween.get(hexagons[index],{loop:false})
 	.to({ x: cwidth+(hexagons[i].size) }, 1000, createjs.Ease.getPowInOut(4));
+
 	createjs.Tween.get(shadowImages[index],{loop:false})
 	.to({ x: cwidth+(hexagons[i].size) }, 1000, createjs.Ease.getPowInOut(4));
+
+
+
 
 	for(i in hexagons){
 		if(i != index){        
@@ -100,25 +105,6 @@ function showSingle(index) {
 	stage.addChild(single);
 	createjs.Tween.get(single,{loop:false})
 	.to({ x: -(cwidth) }, 1000, createjs.Ease.getPowInOut(4));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	var img = new Image();
 	img.src = "img/shadowImages/"+index+".png";
@@ -138,8 +124,8 @@ function showSingle(index) {
 
 
 	backbtn.style.display = "block"
-
 	container.style.display = "block";
+
 
 	document.addEventListener('deviceready', function() {
         setTimeout(bacon.scan, 1000);
@@ -166,15 +152,25 @@ function showSingle(index) {
 }
 
 function fillSingleShadow(){
+	document.removeEventListener('deviceready', function() {
+        setTimeout(bacon.scan, 1000);
+        bacon.timer = setInterval(function(){bacon.updateList('0C:F3:EE:0D:9F:D4')}, 1000);
+    }, false);
+}
+
+function fillShadow(index){
 
 }
 
-function fillShadow(){
+// function listenForBeacon(index) {
+// 	setTimeout(bacon.scan, 1000);
+//     bacon.timer = setInterval(function(){bacon.updateList('0C:F3:EE:0D:9F:D4')}, 1000);
+// }
 
-}
 
-
-
+//TO CHANGE IMG SOURCE!!!!!
+//-------------------------
+// shadowImages[index].image.src = "img/filledShadows/"+index+".png";
 
 
 
