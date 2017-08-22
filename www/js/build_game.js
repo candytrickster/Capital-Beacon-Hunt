@@ -55,6 +55,7 @@ function setupHexagons() {
 function showGrid(){
 
 	endbtn.style.display = "block";
+	endbtn.style.marginTop = "-58px";
 	backbtn.style.display = "none";
 	container.style.display = "none";
 	stage.removeAllChildren();
@@ -124,7 +125,9 @@ function showSingle(index) {
 
 
 	backbtn.style.display = "block"
-	container.style.display = "block";
+	backbtn.style.marginTop = "-58px";
+	endbtn.style.display = "none";
+	// container.style.display = "block";
 
 
 	document.addEventListener('deviceready', function() {
