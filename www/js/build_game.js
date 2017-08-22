@@ -68,9 +68,9 @@ function showGrid(){
 
 	for(i in hexagons){
 		createjs.Tween.get(hexagons[i], {loop: false})
-		.to({alpha: 1}, 1000);
+		.to({alpha: 1}, 100);
 		createjs.Tween.get(shadowImages[i], {loop: false})
-		.to({alpha: 1}, 1000);
+		.to({alpha: 1}, 100);
 	}
 	stage.update();
 
@@ -101,10 +101,29 @@ function showSingle(index) {
 	createjs.Tween.get(single,{loop:false})
 	.to({ x: -(cwidth) }, 1000, createjs.Ease.getPowInOut(4));
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	var img = new Image();
 	img.src = "img/shadowImages/"+index+".png";
 
-	img.onload = function() {
+	// img.onload = function() {
 		var bitmap = new createjs.Bitmap(img);
 		stage.addChild(bitmap);
 		bitmap.scaleX = bitmap.scaleY = 0.7;
@@ -112,17 +131,10 @@ function showSingle(index) {
     	bitmap.x = single.xPlace;
     	bitmap.xPlace = bitmap.x;
     	stage.addChild(bitmap);
+    	stage.update();
     	createjs.Tween.get(bitmap,{loop:false})
 		.to({ x: (cwidth/2)-(bitmap.image.width/2.85) }, 1000, createjs.Ease.getPowInOut(4));
-
-    	// console.log(bitmap.x+" ; "+bitmap.y);
-    	// console.log(bitmap.image.width);
-    	// return bitmap;
-	}
-
-
-
-
+	// }
 
 
 	backbtn.style.display = "block"
@@ -138,6 +150,8 @@ function showSingle(index) {
 
 	backbtn.onclick = function() {
 		createjs.Tween.get(single,{loop:false})
+		.to({ x: cwidth+(cwidth/2) }, 1000, createjs.Ease.getPowInOut(4));
+		createjs.Tween.get(bitmap,{loop:false})
 		.to({ x: cwidth+(cwidth/2) }, 1000, createjs.Ease.getPowInOut(4));
 
 		createjs.Tween.get(hexagons[index],{loop:false})

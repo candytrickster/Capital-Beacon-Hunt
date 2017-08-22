@@ -3,6 +3,7 @@ var beacons = {};
 var hexagons = {};
 var hexTexts = {};
 var shadowImages = {};
+var singleShadowImage = {};
 
 manifest = [
     {src:"img/bee-sprite.png", id:"beeSprite"},
