@@ -67,6 +67,9 @@ function SingleHex(index){
 	var y= cheight/2;
 	
 	hex.index = index;
+	hex.xPlace = x;
+	hex.yPlace = y;
+	hex.size = size;
 
 	hex.graphics.beginFill("#FFDF00").drawPolyStar(x, y, size, 6, 0, 30);
 	return hex;

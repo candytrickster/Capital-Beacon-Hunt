@@ -106,6 +106,7 @@ bacon.display = function(address) {
             bacon.message('You found it! The answer was the "'+foundMsg+'"');
             bacon.timer = null;
             baconHtml += foundNext;
+            fillSingleShadow();
         }
         
     }

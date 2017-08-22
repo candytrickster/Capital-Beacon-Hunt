@@ -101,6 +101,30 @@ function showSingle(index) {
 	createjs.Tween.get(single,{loop:false})
 	.to({ x: -(cwidth) }, 1000, createjs.Ease.getPowInOut(4));
 
+	var img = new Image();
+	img.src = "img/shadowImages/"+index+".png";
+
+	img.onload = function() {
+		var bitmap = new createjs.Bitmap(img);
+		stage.addChild(bitmap);
+		bitmap.scaleX = bitmap.scaleY = 0.7;
+    	bitmap.y = single.yPlace - (bitmap.image.height/2.85);
+    	bitmap.x = single.xPlace;
+    	bitmap.xPlace = bitmap.x;
+    	stage.addChild(bitmap);
+    	createjs.Tween.get(bitmap,{loop:false})
+		.to({ x: (cwidth/2)-(bitmap.image.width/2.85) }, 1000, createjs.Ease.getPowInOut(4));
+
+    	// console.log(bitmap.x+" ; "+bitmap.y);
+    	// console.log(bitmap.image.width);
+    	// return bitmap;
+	}
+
+
+
+
+
+
 	backbtn.style.display = "block"
 
 	container.style.display = "block";
@@ -126,6 +150,18 @@ function showSingle(index) {
 
 	
 }
+
+function fillSingleShadow(){
+
+}
+
+function fillShadow(){
+
+}
+
+
+
+
 
 
 
