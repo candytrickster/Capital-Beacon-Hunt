@@ -110,7 +110,7 @@ bacon.removeOld = function() {
     }
 }
 
-bacon.display = function(bitmap,address) {
+bacon.display = function(bitmap,index,address) {
     // bacon.appContainer.classList.add('loading');
     // var baconHtml = '';
     console.log(address);
@@ -121,10 +121,10 @@ bacon.display = function(bitmap,address) {
         var baconBit = sortedList[i];
         if(baconBit.address == address && baconBit.rssi >= -70) {
 
-            bacon.message('You found it! The answer was the "'+address+'"');
+            // bacon.message('You found it! The answer was the "'+address+'"');
 
             clearInterval(bacon.timer);
-            fillSingleShadow(bitmap);
+            fillSingleShadow(bitmap,index);
             beacons[index].done();
             numFound += 1;
             bacon.timer = null;

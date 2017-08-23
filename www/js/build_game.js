@@ -158,6 +158,7 @@ function showSingle(index) {
 	bitmap.y = single.yPlace - (bitmap.image.height/2.85);
 	bitmap.x = single.xPlace;
 	bitmap.xPlace = bitmap.x;
+	bitmap.yPlace = bitmap.y;
 	stage.addChild(bitmap);
 	createjs.Tween.get(bitmap,{loop:false})
 	.to({ x: (cwidth/2)-(bitmap.image.width/2.85) }, 1000, createjs.Ease.getPowInOut(4));
@@ -171,11 +172,11 @@ function showSingle(index) {
 	//start scanning
 	setTimeout(bacon.scan, 1000);
     bacon.timer = setInterval(function(){
-    	bacon.display(bitmap,beacons[index].address);
+    	bacon.display(bitmap,index,beacons[index].address);
     }, 1000);
     // console.log(singleId);
     // stage.removeChild(bitmap);
-    // fillSingleShadow(bitmap);
+    // fillSingleShadow(bitmap,index);
 
 
 
@@ -209,8 +210,34 @@ function showSingle(index) {
 	
 }
 
-function fillSingleShadow(bitmap){
-	stage.removeChild(bitmap);
+function fillSingleShadow(bitmap,index){
+	createjs.Tween.get(bitmap, {loop: false})
+	.to({alpha: 0}, 100);
+	
+	var img = new Image();
+	img.src = "img/filledShadows/"+index+".png";
+
+	console.log(bitmap.yPlace);
+	console.log(bitmap.xPlace);
+
+	img.onload = function() {
+		var newBitmap = new createjs.Bitmap(img);
+		newBitmap.scaleX = newBitmap.scaleY = 0.7;
+    	newBitmap.y = bitmap.yPlace;
+    	newBitmap.x = (cwidth/2)-(newBitmap.image.width/2.8);
+    	newBitmap.xPlace = newBitmap.x;
+    	stage.addChild(newBitmap);
+    	// console.log(bitmap.image.width);
+    	// return bitmap;
+  //   	createjs.Tween.get(newBitmap, {loop: false})
+		// .to({alpha: 1}, 200);
+	}
+	
+
+
+
+
+
 }
 
 function fillShadow(index){
