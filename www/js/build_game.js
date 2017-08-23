@@ -4,7 +4,7 @@ var container = document.getElementById("container");
 var foundX = document.getElementById("foundX");
 var numFound = 0;
 var max = 2;
-var singleId = 0;
+var singleBitmap;
 
 var event = document.createEvent('Event');
 event.initEvent('foundEvent', true, true);
@@ -188,6 +188,11 @@ function showSingle(index) {
 		createjs.Tween.get(bitmap,{loop:false})
 		.to({ x: cwidth+(cwidth/2) }, 1000, createjs.Ease.getPowInOut(4));
 
+		if(singleBitmap) {
+			createjs.Tween.get(singleBitmap,{loop:false})
+			.to({ x: cwidth+(cwidth/2) }, 1000, createjs.Ease.getPowInOut(4));
+		}
+
 		createjs.Tween.get(hexagons[index],{loop:false})
 		.to({ x: 0 }, 1000, createjs.Ease.getPowInOut(4));
 		createjs.Tween.get(shadowImages[index],{loop:false})
@@ -221,12 +226,12 @@ function fillSingleShadow(bitmap,index){
 	console.log(bitmap.xPlace);
 
 	img.onload = function() {
-		var newBitmap = new createjs.Bitmap(img);
-		newBitmap.scaleX = newBitmap.scaleY = 0.7;
-    	newBitmap.y = bitmap.yPlace;
-    	newBitmap.x = (cwidth/2)-(newBitmap.image.width/2.8);
-    	newBitmap.xPlace = newBitmap.x;
-    	stage.addChild(newBitmap);
+		singleBitmap = new createjs.Bitmap(img);
+		singleBitmap.scaleX = singleBitmap.scaleY = 0.7;
+    	singleBitmap.y = bitmap.yPlace;
+    	singleBitmap.x = (cwidth/2)-(singleBitmap.image.width/2.8);
+    	singleBitmap.xPlace = singleBitmap.x;
+    	stage.addChild(singleBitmap);
     	// console.log(bitmap.image.width);
     	// return bitmap;
   //   	createjs.Tween.get(newBitmap, {loop: false})

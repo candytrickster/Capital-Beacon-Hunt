@@ -70,7 +70,7 @@ bacon.scan = function() {
         bacon.beacons[beacon.address] = beacon;
     },
     function(error) {
-        bacon.message('scan error: ' + error);
+        // bacon.message('scan error: ' + error);
     });
 }
 
@@ -119,8 +119,9 @@ bacon.display = function(bitmap,index,address) {
     
     for (var i = 0; i < sortedList.length; i++) {
         var baconBit = sortedList[i];
-        if(baconBit.address == address && baconBit.rssi >= -70) {
-
+        bacon.message("rssi : "+baconBit.rssi);
+        if(baconBit.address == address && baconBit.rssi >= -60) {
+            // bacon.message("rssi : "+baconBit.rssi);
             // bacon.message('You found it! The answer was the "'+address+'"');
 
             clearInterval(bacon.timer);
