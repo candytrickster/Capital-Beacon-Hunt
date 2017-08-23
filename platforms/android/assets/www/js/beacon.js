@@ -115,7 +115,7 @@ bacon.display = function(index,address) {
     // var baconHtml = '';
     console.log(address);
     var sortedList = bacon.getSortedList(bacon.beacons);
-    bacon.message(address);
+    // bacon.message(address);
     
     for (var i = 0; i < sortedList.length; i++) {
         var baconBit = sortedList[i];

@@ -68,14 +68,33 @@ function showGrid(){
 	var div = document.getElementById("app");
 	// console.log(shadowImages[i]);
 	for(i in hexagons){
-
-		if(beacons[i].found) {
-			// stage.addChild(filledImages[i]);
-			// shadowImages[i].image.src = "img/filledShadows/"+i+".png";
-			// changeImage(i);
-			// hexagons[i].removeAllEventListeners();
-		}
 		
+		if(beacons[i].found) {
+			// console.log(shadowImages[i].stage);
+			// stage.addChild(filledImages[i]);
+			// var imageStage = shadowImages[i].stage;
+
+			var img = new Image();
+			img.src = "img/filledShadows/"+i+".png";
+			var bitmap;
+			// img.onload = function() {
+				bitmap = new createjs.Bitmap(img);
+				// stage.addChild(bitmap);
+				bitmap.scaleX = bitmap.scaleY = 0.35;
+		    	bitmap.y = hexagons[i].yPlace - (shadowImages[i].image.height/6);
+		    	bitmap.x = hexagons[i].xPlace - (shadowImages[i].image.width/5.8);
+		    	bitmap.xPlace = bitmap.x;
+		    	shadowImages[i] = bitmap;
+		    // }
+		    	// return bitmap;
+			
+
+			// shadowImages[i].image.src = "img/filledShadows/"+i+".png";
+			// shadowImages[i].stage = imageStage;
+			// changeImage(i);
+			hexagons[i].removeAllEventListeners();
+		}
+
 		stage.addChild(hexagons[i]);
 		createjs.Tween.get(hexagons[i], {loop: false})
 		.to({alpha: 1}, 200);
@@ -83,8 +102,11 @@ function showGrid(){
 		// div.appendChild(hexTexts[i]);
 		stage.addChild(shadowImages[i]);
 		createjs.Tween.get(shadowImages[i], {loop: false})
+		.to({alpha: 0}, 100);
+		console.log(shadowImages[i].image.src);
+		createjs.Tween.get(shadowImages[i], {loop: false})
 		.to({alpha: 1}, 200);
-
+		
 
 		
 	}
@@ -106,7 +128,8 @@ function showSingle(index) {
 
 	for(i in hexagons){
 		if(i != index){
-			console.log(shadowImages[i]);   
+			// stage.removeChild(shadowImages[i]);
+			console.log(shadowImages[i]);//!!!!!!!
 			createjs.Tween.get(hexagons[i], {loop: false})
 			.to({alpha: 0}, 100);
 			createjs.Tween.get(shadowImages[i], {loop: false})
@@ -127,6 +150,7 @@ function showSingle(index) {
 	bitmap.y = single.yPlace - (bitmap.image.height/2.85);
 	bitmap.x = single.xPlace;
 	bitmap.xPlace = bitmap.x;
+	bitmap
 	stage.addChild(bitmap);
 	stage.update();
 	createjs.Tween.get(bitmap,{loop:false})
