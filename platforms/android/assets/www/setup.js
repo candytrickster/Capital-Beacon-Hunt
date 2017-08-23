@@ -4,6 +4,7 @@ var hexagons = {};
 var hexTexts = {};
 var shadowImages = {};
 var singleShadowImage = {};
+var filledImages = {};
 
 manifest = [
     {src:"img/bee-sprite.png", id:"beeSprite"},

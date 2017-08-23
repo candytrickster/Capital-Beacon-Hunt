@@ -122,6 +122,8 @@ bacon.display = function(index,address) {
         if(baconBit.address == address && baconBit.rssi >= -70) {
 
             bacon.message('You found it! The answer was the "'+address+'"');
+
+            clearInterval(bacon.timer);
             bacon.timer = null;
             beacons[index].done();
             evothings.eddystone.stopScan();

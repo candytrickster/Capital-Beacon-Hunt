@@ -71,9 +71,9 @@ function showGrid(){
 
 		if(beacons[i].found) {
 			// stage.addChild(filledImages[i]);
-			shadowImages[i].image.src = "img/filledShadows/"+i+".png";
+			// shadowImages[i].image.src = "img/filledShadows/"+i+".png";
 			// changeImage(i);
-			hexagons[i].removeAllEventListeners();
+			// hexagons[i].removeAllEventListeners();
 		}
 		
 		stage.addChild(hexagons[i]);

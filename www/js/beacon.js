@@ -115,13 +115,15 @@ bacon.display = function(index,address) {
     // var baconHtml = '';
     console.log(address);
     var sortedList = bacon.getSortedList(bacon.beacons);
-    bacon.message(address);
+    // bacon.message(address);
     
     for (var i = 0; i < sortedList.length; i++) {
         var baconBit = sortedList[i];
         if(baconBit.address == address && baconBit.rssi >= -70) {
 
             bacon.message('You found it! The answer was the "'+address+'"');
+
+            clearInterval(bacon.timer);
             bacon.timer = null;
             beacons[index].done();
             evothings.eddystone.stopScan();

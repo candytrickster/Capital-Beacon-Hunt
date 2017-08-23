@@ -29,7 +29,7 @@ function ShadowImage(index) {
 
 	img.onload = function() {
 		var bitmap = new createjs.Bitmap(img);
-		stage.addChild(bitmap);
+		// stage.addChild(bitmap);
 		bitmap.scaleX = bitmap.scaleY = 0.35;
     	bitmap.y = hexagons[index].yPlace - (bitmap.image.height/6);
     	bitmap.x = hexagons[index].xPlace - (bitmap.image.width/5.8);
@@ -57,6 +57,40 @@ function ShadowImage(index) {
     //     stage.update(); 
     // }
 }
+
+// function FilledImage(index){
+// 	var img = new Image();
+// 	img.src = "img/filledShadows/"+index+".png";
+
+// 	img.onload = function() {
+// 		var bitmap = new createjs.Bitmap(img);
+// 		bitmap.scaleX = bitmap.scaleY = 0.35;
+//     	bitmap.y = hexagons[index].yPlace - (bitmap.image.height/6);
+//     	bitmap.x = hexagons[index].xPlace - (bitmap.image.width/5.8);
+//     	bitmap.xPlace = bitmap.x;
+//     	filledImages[index] = bitmap;
+// 	}
+// }
+
+// function changeImage(index){
+// 	var img = new Image();
+// 	img.src = "img/filledShadows/"+index+".png";
+
+// 	img.onload = function() {
+// 		var bitmap = new createjs.Bitmap(img);
+// 		// stage.addChild(bitmap);
+// 		bitmap.scaleX = bitmap.scaleY = 0.35;
+//     	bitmap.y = hexagons[index].yPlace - (bitmap.image.height/6);
+//     	bitmap.x = hexagons[index].xPlace - (bitmap.image.width/5.8);
+//     	bitmap.xPlace = bitmap.x;
+//     	shadowImages[index] = bitmap;
+//     	stage.update();
+
+//     	// console.log(bitmap.image.width);
+//     	// return bitmap;
+// 	}
+// }
+
 
 function SingleHex(index){
 	var hex = new createjs.Shape();

@@ -25,7 +25,7 @@ function setupPlay() {
 }
 
 function setupItems() {
-	beacons[0] = new Item("Base Isolator", "0C:F3:EE:0D:9F:D4", true, 0, true, "This item helps our building stay up during earthquakes", "This item is by the wall safe in the visitor center");
+	beacons[0] = new Item("Base Isolator", "0C:F3:EE:0D:9F:D4", true, 0, false, "This item helps our building stay up during earthquakes", "This item is by the wall safe in the visitor center");
 	beacons[1] = new Item("Liberty Bell", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint");
 	beacons[2] = new Item("Olene Walker", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint");
 	beacons[3] = new Item("House of Rep", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint");
@@ -50,9 +50,10 @@ function setupHexagons() {
 
 		var textY = hexagons[i].yPlace - (hexagons[i].size*1.5);
 		ShadowImage(i);
+		// FilledImage(i);
 		hexTexts[i] = new Text(x,textY,beacons[i].name);
 	}
-	showGrid();
+	setTimeout("showGrid()",1000);
 }
 
 function showGrid(){
@@ -65,23 +66,30 @@ function showGrid(){
 	foundX.innerHTML = "Found "+numFound+" of 10";
 
 	var div = document.getElementById("app");
+	// console.log(shadowImages[i]);
 	for(i in hexagons){
+
 		if(beacons[i].found) {
-			// shadowImages[i].image.src = "img/filledShadows/"+index+".png";
-			// console.log(shadowImages[i]);
+			// stage.addChild(filledImages[i]);
+			// shadowImages[i].image.src = "img/filledShadows/"+i+".png";
+			// changeImage(i);
+			// hexagons[i].removeAllEventListeners();
 		}
+		
 		stage.addChild(hexagons[i]);
+		createjs.Tween.get(hexagons[i], {loop: false})
+		.to({alpha: 1}, 200);
 		// stage.addChild(hexTexts[i]);
 		// div.appendChild(hexTexts[i]);
-		// stage.addChild(shadowImages[i]);
+		stage.addChild(shadowImages[i]);
+		createjs.Tween.get(shadowImages[i], {loop: false})
+		.to({alpha: 1}, 200);
+
+
+		
 	}
 
-	for(i in hexagons){
-		createjs.Tween.get(hexagons[i], {loop: false})
-		.to({alpha: 1}, 100);
-		createjs.Tween.get(shadowImages[i], {loop: false})
-		.to({alpha: 1}, 100);
-	}
+	
 
 
 }
@@ -89,12 +97,16 @@ function showGrid(){
 function showSingle(index) {
 	document.getElementById("message").innerHTML = "Searching ...";
 	createjs.Tween.get(hexagons[index],{loop:false})
-	.to({ x: cwidth+(hexagons[i].size) }, 1000, createjs.Ease.getPowInOut(4));
+	.to({ x: cwidth+(hexagons[index].size) }, 1000, createjs.Ease.getPowInOut(4));
+
+	// console.log(shadowImages[index]);
+
 	createjs.Tween.get(shadowImages[index],{loop:false})
-	.to({ x: cwidth+(hexagons[i].size) }, 1000, createjs.Ease.getPowInOut(4));
+	.to({ x: cwidth+(hexagons[index].size) }, 1000, createjs.Ease.getPowInOut(4));
 
 	for(i in hexagons){
-		if(i != index){        
+		if(i != index){
+			console.log(shadowImages[i]);   
 			createjs.Tween.get(hexagons[i], {loop: false})
 			.to({alpha: 0}, 100);
 			createjs.Tween.get(shadowImages[i], {loop: false})
