@@ -110,7 +110,7 @@ bacon.removeOld = function() {
     }
 }
 
-bacon.display = function(index,address) {
+bacon.display = function(bitmap,address) {
     // bacon.appContainer.classList.add('loading');
     // var baconHtml = '';
     console.log(address);
@@ -124,12 +124,11 @@ bacon.display = function(index,address) {
             bacon.message('You found it! The answer was the "'+address+'"');
 
             clearInterval(bacon.timer);
-            bacon.timer = null;
+            fillSingleShadow(bitmap);
             beacons[index].done();
+            numFound += 1;
+            bacon.timer = null;
             evothings.eddystone.stopScan();
-            // baconHtml += foundNext;
-
-            // fillSingleShadow();
         }
         
     }

@@ -72,6 +72,7 @@ header {
     position: fixed;
     width: 100%;
     text-align: center;
+    z-index: 9999;
 }
 
 header hr {
@@ -126,9 +127,9 @@ header p {
 #foundX {
     font-family: Opensans;
     font-size: 36px;
-    margin-top: 70px;
+    /*margin-top: 70px;*/
     text-indent: -9999px;
-    line-height: 0;
+    /*line-height: 0;*/
     -webkit-transition: all 2s ease;  
     -moz-transition: all 2s ease;  
     -o-transition: all 2s ease;  
@@ -190,8 +191,16 @@ header p {
 
 
 canvas {
-    margin-left: -28px;
-    margin-top: -134px;
+    /*margin-left: -28px;
+    margin-top: -134px;*/
+    padding: 0;
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .canvas-play {

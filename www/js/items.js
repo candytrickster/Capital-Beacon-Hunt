@@ -1,4 +1,4 @@
-function Item(name, address, found, points, clickable, clue, hint) {
+function Item(name, address, found, points, clickable, clue, hint,funFact) {
 	this.name = name;
 	this.address = address;
 	this.found = found;
@@ -6,6 +6,7 @@ function Item(name, address, found, points, clickable, clue, hint) {
 	this.clickable = clickable;
 	this.clue = clue;
 	this.hint = hint;
+	this.funFact = funFact;
 
 	this.done = function() {
 		this.clickable = !this.clickable;

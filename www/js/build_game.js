@@ -3,8 +3,11 @@ var backbtn = document.getElementById("back");
 var container = document.getElementById("container");
 var foundX = document.getElementById("foundX");
 var numFound = 0;
+var max = 2;
+var singleId = 0;
 
-var blurFilter = new createjs.BlurFilter(5, 5, 1);
+var event = document.createEvent('Event');
+event.initEvent('foundEvent', true, true);
 
 
 function setupPlay() {
@@ -15,8 +18,9 @@ function setupPlay() {
 	header.className += "gameStart";
 
 	foundX.className += "foundX";
+	// foundX.style.marginTop = "-"+header.style.height+"px";
 
-	canvas.className += "canvas-play";
+	// canvas.className += "canvas-play";
 
 	stage.removeChild(playbtn, bee,bbee,sbee);
 	stage.update();
@@ -25,17 +29,22 @@ function setupPlay() {
 }
 
 function setupItems() {
-	beacons[0] = new Item("Base Isolator", "0C:F3:EE:0D:9F:D4", true, 0, false, "This item helps our building stay up during earthquakes", "This item is by the wall safe in the visitor center");
-	beacons[1] = new Item("Liberty Bell", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint");
-	beacons[2] = new Item("Olene Walker", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint");
-	beacons[3] = new Item("House of Rep", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint");
-	beacons[4] = new Item("Senate", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint");
-	beacons[5] = new Item("Supreme Court", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint");
-	beacons[6] = new Item("Governor's Office", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint");
-	beacons[7] = new Item("Gold Room", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint");
-	beacons[8] = new Item("Filo", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint");
-	beacons[9] = new Item("Rotunda", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint");
+	beacons[0] = new Item("Base Isolator", "0C:F3:EE:0D:9F:D4", false, 0, true, "Shake Things Up", "This item is by the wall safe in the visitor center","Base isolators help buildings to withstand earthquakes. There are 265 isolators under capitol. In an earthquake, the isolators can stretch up to two feet.");
+	beacons[1] = new Item("Liberty Bell", "0C:F3:EE:0D:A4:4C", false, 0, true, "Let Freedom Ring", "The original is found in Philadelphia","Our bell was given to us in 1950. The government gave all of its states an exact replica as part of a bond drive.");
+	// beacons[2] = new Item("Olene Walker", "OC:F3:EE:0D:9F:CC", false, 0, true, "Clue", "hint","fun fact");
+	// beacons[3] = new Item("House of Rep", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint","fun fact");
+	// beacons[4] = new Item("Senate", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint","fun fact");
+	// beacons[5] = new Item("Supreme Court", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint","fun fact");
+	// beacons[6] = new Item("Governor's Office", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint","fun fact");
+	// beacons[7] = new Item("Gold Room", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint","fun fact");
+	// beacons[8] = new Item("Filo", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint","fun fact");
+	// beacons[9] = new Item("Rotunda", "0C:F3:EE:0D:A4:4C", false, 0, true, "Clue", "hint","fun fact");
 }
+
+// ADDRESSES:
+// 0C:F3:EE:0D:9F:D4 -3658
+// OC:F3:EE:0D:9F:CC - NO MODEL NUM
+// 0C:F3:EE:0D:A4:4C - 47447
 
 function setupHexagons() {
 	for(i in beacons) {
@@ -58,12 +67,10 @@ function setupHexagons() {
 
 function showGrid(){
 
-	document.getElementById("message").innerHTML = "Searching ...";
+	// document.getElementById("message").innerHTML = "Searching ...";
 	stage.removeAllChildren();
 	backbtn.style.display = "none";
 	container.style.display = "none";
-
-	foundX.innerHTML = "Found "+numFound+" of 10";
 
 	var div = document.getElementById("app");
 	// console.log(shadowImages[i]);
@@ -117,7 +124,8 @@ function showGrid(){
 }
 
 function showSingle(index) {
-	document.getElementById("message").innerHTML = "Searching ...";
+	foundX.innerHTML = beacons[index].clue;
+	// document.getElementById("message").innerHTML = "Searching ...";
 	createjs.Tween.get(hexagons[index],{loop:false})
 	.to({ x: cwidth+(hexagons[index].size) }, 1000, createjs.Ease.getPowInOut(4));
 
@@ -150,9 +158,7 @@ function showSingle(index) {
 	bitmap.y = single.yPlace - (bitmap.image.height/2.85);
 	bitmap.x = single.xPlace;
 	bitmap.xPlace = bitmap.x;
-	bitmap
 	stage.addChild(bitmap);
-	stage.update();
 	createjs.Tween.get(bitmap,{loop:false})
 	.to({ x: (cwidth/2)-(bitmap.image.width/2.85) }, 1000, createjs.Ease.getPowInOut(4));
 
@@ -160,15 +166,16 @@ function showSingle(index) {
 	backbtn.style.marginTop = "-58px";
 	container.style.display = "block";
 
-
+	// singleId = bitmap.id;
 
 	//start scanning
 	setTimeout(bacon.scan, 1000);
     bacon.timer = setInterval(function(){
-    	bacon.display(index,beacons[index].address);
+    	bacon.display(bitmap,beacons[index].address);
     }, 1000);
-
-
+    // console.log(singleId);
+    // stage.removeChild(bitmap);
+    // fillSingleShadow(bitmap);
 
 
 
@@ -185,6 +192,7 @@ function showSingle(index) {
 		createjs.Tween.get(shadowImages[index],{loop:false})
 		.to({ x: shadowImages[index].xPlace }, 1000, createjs.Ease.getPowInOut(4));
 		
+		foundX.innerHTML = "Found "+numFound+" of "+max;
 		//stop scanning
 		
 		clearInterval(bacon.timer);
@@ -201,8 +209,8 @@ function showSingle(index) {
 	
 }
 
-function fillSingleShadow(){
-
+function fillSingleShadow(bitmap){
+	stage.removeChild(bitmap);
 }
 
 function fillShadow(index){
